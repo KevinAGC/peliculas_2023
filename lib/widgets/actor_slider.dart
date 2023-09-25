@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(const MovieSlider());
-
-class MovieSlider extends StatelessWidget {
-  const MovieSlider({super.key});
+class ActorSlider extends StatelessWidget {
+  const ActorSlider({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,14 +10,14 @@ class MovieSlider extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: size.height * .3,
-      color: Colors.red,
+      color: const Color.fromARGB(255, 255, 255, 165),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 20),
             child: Text(
-              'Populares',
+              'Actores',
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
@@ -30,7 +28,7 @@ class MovieSlider extends StatelessWidget {
               child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemCount: 20,
-            itemBuilder: (_, int index) => _MoviePoster(),
+            itemBuilder: (_, int index) => _ActorPoster(),
           ))
         ],
       ),
@@ -38,8 +36,8 @@ class MovieSlider extends StatelessWidget {
   }
 }
 
-class _MoviePoster extends StatelessWidget {
-  const _MoviePoster({super.key});
+class _ActorPoster extends StatelessWidget {
+  const _ActorPoster({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +48,6 @@ class _MoviePoster extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
       child: Column(children: [
         GestureDetector(
-          onTap: () => Navigator.pushNamed(context, 'details', arguments: ''),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(20),
             child: const FadeInImage(
