@@ -28,7 +28,7 @@ class ActorSlider extends StatelessWidget {
               child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemCount: 20,
-            itemBuilder: (_, int index) => _ActorPoster(),
+            itemBuilder: (_, int index) => const _ActorPoster(),
           ))
         ],
       ),
@@ -37,7 +37,7 @@ class ActorSlider extends StatelessWidget {
 }
 
 class _ActorPoster extends StatelessWidget {
-  const _ActorPoster({super.key});
+  const _ActorPoster();
 
   @override
   Widget build(BuildContext context) {

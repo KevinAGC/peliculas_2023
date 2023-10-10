@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(const MovieSlider());
+import '../models/movie.dart';
 
 class MovieSlider extends StatelessWidget {
-  const MovieSlider({super.key});
+  final List<Movie> movies;
+  final String? title;
+  const MovieSlider({super.key, required this.movies, this.title});
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-
     return Container(
       width: double.infinity,
-      height: size.height * .3,
+      height: size.height * 0.30,
       color: Colors.red,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -27,11 +28,12 @@ class MovieSlider extends StatelessWidget {
             ),
           ),
           Expanded(
-              child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: 20,
-            itemBuilder: (_, int index) => _MoviePoster(),
-          ))
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: movies.length,
+              itemBuilder: (_, int index) => _MoviePoster(movie: movies[index]),
+            ),
+          )
         ],
       ),
     );
@@ -39,38 +41,38 @@ class MovieSlider extends StatelessWidget {
 }
 
 class _MoviePoster extends StatelessWidget {
-  const _MoviePoster({super.key});
+  final Movie movie;
+  const _MoviePoster({required this.movie});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: 130,
       height: 210,
-      color: Colors.green,
-      margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-      child: Column(children: [
-        GestureDetector(
-          onTap: () => Navigator.pushNamed(context, 'details', arguments: ''),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(20),
-            child: const FadeInImage(
-              placeholder: AssetImage('assets/no-image.jpeg'),
-              image: AssetImage('assets/no-image.jpeg'),
-              width: 130,
-              height: 145,
+      margin: const EdgeInsets.symmetric(horizontal: 10),
+      child: Column(
+        children: [
+          GestureDetector(
+            onTap: () => Navigator.pushNamed(context, 'details', arguments: ''),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: FadeInImage(
+                placeholder: const AssetImage('assets/no-image.jpg'),
+                image: NetworkImage(movie.fullPosterImg),
+                width: 130,
+                height: 165,
+              ),
             ),
           ),
-        ),
-        const SizedBox(
-          height: 5,
-        ),
-        const Text(
-          'Id ut ullamco non quis aliqua nulla duis.',
-          maxLines: 2,
-          overflow: TextOverflow.ellipsis,
-          textAlign: TextAlign.center,
-        ),
-      ]),
+          const SizedBox(height: 1),
+          Text(
+            movie.title,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+            textAlign: TextAlign.center,
+          )
+        ],
+      ),
     );
   }
 }

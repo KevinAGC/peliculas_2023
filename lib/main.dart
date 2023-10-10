@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:peliculas_2023/providers/movies_provider.dart';
 import 'package:peliculas_2023/screens/screens.dart';
 import 'package:provider/provider.dart';
+
+import 'providers/movies_provider.dart';
 
 void main() => runApp(const AppState());
 
@@ -17,7 +18,7 @@ class AppState extends StatelessWidget {
           lazy: false,
         )
       ],
-      child: MyApp(),
+      child: const MyApp(),
     );
   }
 }
@@ -32,8 +33,8 @@ class MyApp extends StatelessWidget {
       title: 'Peliculas',
       initialRoute: 'home',
       routes: {
-        'home': (_) => HomeScreen(),
-        'details': (_) => DetailsScreen(),
+        'home': (_) => const HomeScreen(),
+        'details': (_) => const DetailsScreen(),
       },
     );
   }
