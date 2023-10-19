@@ -31,7 +31,7 @@ class MoviesProvider extends ChangeNotifier {
     onDisplayMovies = nowPLayingResponse.results;
     //Le comunicamos a todos los widgets que estan escuchando que se cambio la data por lo tanto se tienen que redibujar
     notifyListeners();
-    print(nowPLayingResponse.results[0].title);
+    //print(nowPLayingResponse.results[0].title);
   }
 
   getPopularMovies() async {

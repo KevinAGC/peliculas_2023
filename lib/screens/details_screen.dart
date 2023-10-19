@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+//import 'package:peliculas_2023/widgets/actor_slider.dart';
 import '../models/movie.dart';
 
 class DetailsScreen extends StatelessWidget {
@@ -7,7 +8,7 @@ class DetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //Recibir argumentos de otra pantalla
-    final Movie movie = ModalRoute.of(context)?.settings.arguments as Movie;
+    final Movie movie = (ModalRoute.of(context)?.settings.arguments) as Movie;
     return Scaffold(
       body: CustomScrollView(
         //Widget con comportamientos predefinidos al scroll
@@ -24,6 +25,9 @@ class DetailsScreen extends StatelessWidget {
                 _Overview(
                   movie: movie,
                 ),
+                _ActorSlider(
+                  movie: movie,
+                )
                 // _ActorsSlider(movie: movie)
               ],
             ),
@@ -150,8 +154,8 @@ class _Overview extends StatelessWidget {
   }
 }
 
-class _ActorsSlider extends StatelessWidget {
-  const _ActorsSlider({required this.movie});
+class _ActorSlider extends StatelessWidget {
+  const _ActorSlider({required this.movie});
   final Movie movie;
   @override
   Widget build(BuildContext context) {
